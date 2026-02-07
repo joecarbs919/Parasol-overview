@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parasol Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: #FFF1E3;
+            color: #333;
+            line-height: 1.6;
+        }
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            padding: 20px 40px 0;
+            background-color: #FFF1E3;
+        }
+        .tab-btn {
+            padding: 12px 24px;
+            border: 2px solid #F90006;
+            background: transparent;
+            color: #F90006;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-btn:first-child {
+            border-radius: 6px 0 0 6px;
+            border-right: 1px solid #F90006;
+        }
+        .tab-btn:last-child {
+            border-radius: 0 6px 6px 0;
+            border-left: 1px solid #F90006;
+        }
+        .tab-btn.active {
+            background-color: #F90006;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background-color: rgba(249, 0, 6, 0.1);
+        }
+        .page {
+            display: none;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .page.active {
+            display: block;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #F90006;
+            font-size: 24px;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        h1 {
+            color: #F90006;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .section {
+            margin-bottom: 48px;
+        }
+        .product-row {
+            display: flex;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .product-name {
+            font-weight: bold;
+            min-width: 200px;
+            color: #333;
+        }
+        .product-desc {
+            color: #555;
+            flex: 1;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .col h3 {
+            color: #F90006;
+            font-size: 16px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .relationship-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .relationship-item strong {
+            color: #333;
+        }
+        .vc-list {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.8;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+        th {
+            background-color: #F90006;
+            color: white;
+            text-align: left;
+            padding: 12px 16px;
+            font-weight: bold;
+        }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            vertical-align: top;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(249, 0, 6, 0.03);
+        }
+        .wt-col {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            color: #F90006;
+        }
+        .dim-col {
+            width: 180px;
+            font-weight: bold;
+        }
+        h3.table-title {
+            color: #F90006;
+            font-size: 18px;
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+        .signal-row {
+            display: flex;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .signal-name {
+            font-weight: bold;
+            min-width: 180px;
+            color: #333;
+        }
+        .signal-desc {
+            color: #555;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="tab-nav">
+        <button class="tab-btn active" onclick="showPage('page1')">Products & Relationships</button>
+        <button class="tab-btn" onclick="showPage('page2')">Parasol Fit Index</button>
+    </nav>
+
+    <!-- PAGE 1: Products & Relationships -->
+    <div id="page1" class="page active">
+        <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol Logo" class="logo">
+
+        <div class="section">
+            <h2>WHAT WE DO</h2>
+            <div class="product-row">
+                <div class="product-name">Deal Closing</div>
+                <div class="product-desc">We own your deals start-to-finish. Choreograph with your team, drive to closed revenue.</div>
+            </div>
+            <div class="product-row">
+                <div class="product-name">Account Expansion</div>
+                <div class="product-desc">Grow existing accounts into new departments, teams, and locations.</div>
+            </div>
+            <div class="product-row">
+                <div class="product-name">Demand Gen</div>
+                <div class="product-desc">Network activation, partnerships, events, and targeted outreach to fill the funnel.</div>
+            </div>
+            <div class="product-row">
+                <div class="product-name">Thought Leadership</div>
+                <div class="product-desc">Newsletters, content, and video that position you as the expert.</div>
+            </div>
+            <div class="product-row">
+                <div class="product-name">Advisory</div>
+                <div class="product-desc">Product and revenue-focused coaching. Game tape review tied to outcomes.</div>
+            </div>
+            <div class="product-row">
+                <div class="product-name">Rev Ops</div>
+                <div class="product-desc">Reporting frameworks and tool connections. See what's working, cut what isn't.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>PE & VC RELATIONSHIPS</h2>
+            <div class="two-col">
+                <div class="col">
+                    <h3>Private Equity</h3>
+                    <div class="relationship-item">
+                        <strong>1315 Capital → Triple Ring Technologies</strong><br>
+                        Late-stage deal (12-mo contract)
+                    </div>
+                    <div class="relationship-item">
+                        <strong>Boathouse → Analytics 8</strong><br>
+                        Active client ($25M rev services firm)
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>Venture Capital</h3>
+                    <div class="vc-list">
+                        Lerer Hippeau · Benchstrength · GTM Fund · Tip Top Ventures · Essential Capital · Headline
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: Parasol Fit Index -->
+    <div id="page2" class="page">
+        <h1>Parasol Fit Index</h1>
+        <p class="subtitle">How we evaluate partnerships — company fit, stakeholder fit, service alignment</p>
+
+        <h3 class="table-title">COMPANY-LEVEL FIT</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th class="dim-col">Dimension</th>
+                    <th class="wt-col">Wt</th>
+                    <th>What We Look For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="dim-col">Maturity & Stability</td>
+                    <td class="wt-col">15%</td>
+                    <td>2+ years in market, stable ownership, clear decision-making</td>
+                </tr>
+                <tr>
+                    <td class="dim-col">Financial Health</td>
+                    <td class="wt-col">20%</td>
+                    <td>18+ months runway, growing revenue, investment in sales</td>
+                </tr>
+                <tr>
+                    <td class="dim-col">Product-Market Fit</td>
+                    <td class="wt-col">25%</td>
+                    <td>Repeatability in sales, clear ICP, proven value prop</td>
+                </tr>
+                <tr>
+                    <td class="dim-col">Unit Economics</td>
+                    <td class="wt-col">15%</td>
+                    <td>$15K+ ACV, healthy margins, room for Parasol ROI</td>
+                </tr>
+                <tr>
+                    <td class="dim-col">Operational Readiness</td>
+                    <td class="wt-col">15%</td>
+                    <td>CRM in place, bandwidth to collaborate, some process exists</td>
+                </tr>
+                <tr>
+                    <td class="dim-col">Urgency</td>
+                    <td class="wt-col">10%</td>
+                    <td>Board pressure, missed targets, new funding, competitive threat</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="table-title">STAKEHOLDER-LEVEL FIT</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th class="dim-col">Dimension</th>
+                    <th class="wt-col">Wt</th>
+                    <th>What We Look For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="dim-col">Decision Authority</td>
+                    <td class="wt-col">30%</td>
+                    <td>Can sign contracts, budget owner, doesn't need multiple approvals</td>
+                </tr>
+                <tr>
+                    <td class="dim-col">Pain Ownership</td>
+                    <td class="wt-col">25%</td>
+                    <td>Comp tied to revenue metrics, feels the problem daily</td>
+                </tr>
+                <tr>
+                    <td class="dim-col">Political Capital</td>
+                    <td class="wt-col">25%</td>
+                    <td>Recent wins, trusted by leadership, can push initiatives through</td>
+                </tr>
+                <tr>
+                    <td class="dim-col">Tenure & Stability</td>
+                    <td class="wt-col">20%</td>
+                    <td>6+ months in role, planning to stay, will see engagement through</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="table-title">SERVICE FIT SIGNALS</h3>
+        <div class="signal-row">
+            <div class="signal-name">Deal Closing</div>
+            <div class="signal-desc">Pipeline exists but reps struggling to convert. Founder-led sales hitting ceiling.</div>
+        </div>
+        <div class="signal-row">
+            <div class="signal-name">Account Expansion</div>
+            <div class="signal-desc">Customer base exists, NRR under 100%, no expansion playbook.</div>
+        </div>
+        <div class="signal-row">
+            <div class="signal-name">Demand Gen</div>
+            <div class="signal-desc">Product ready, sales team idle, top-of-funnel starving.</div>
+        </div>
+        <div class="signal-row">
+            <div class="signal-name">Thought Leadership</div>
+            <div class="signal-desc">Founder has POV but no platform, entering competitive market.</div>
+        </div>
+        <div class="signal-row">
+            <div class="signal-name">Advisory</div>
+            <div class="signal-desc">Strategic inflection point, scaling decisions pending, need outside lens.</div>
+        </div>
+        <div class="signal-row">
+            <div class="signal-name">Rev Ops</div>
+            <div class="signal-desc">5+ reps, systems duct-taped, data unreliable, scaling pain.</div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            const btnIndex = pageId === 'page1' ? 0 : 1;
+            document.querySelectorAll('.tab-btn')[btnIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>
