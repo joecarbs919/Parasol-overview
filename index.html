@@ -80,20 +80,176 @@
         .section {
             margin-bottom: 48px;
         }
-        .product-row {
-            display: flex;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+
+        /* Product cards */
+        .product-card {
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            background: white;
         }
-        .product-name {
+        .product-card-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .product-card-name {
             font-weight: bold;
-            min-width: 200px;
+            font-size: 18px;
             color: #333;
         }
-        .product-desc {
-            color: #555;
-            flex: 1;
+        .product-card-tag {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+            background-color: #F90006;
+            padding: 2px 8px;
+            border-radius: 3px;
         }
+        .product-card-desc {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+        .product-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .detail-block {
+            font-size: 13px;
+        }
+        .detail-block-label {
+            font-weight: bold;
+            color: #F90006;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .detail-block ul {
+            list-style: none;
+            padding: 0;
+        }
+        .detail-block li {
+            padding: 2px 0;
+            color: #555;
+        }
+        .detail-block li::before {
+            content: "\2022";
+            color: #F90006;
+            font-weight: bold;
+            display: inline-block;
+            width: 12px;
+        }
+        .tier-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .tier {
+            flex: 1;
+            background: rgba(249, 0, 6, 0.04);
+            border: 1px solid rgba(249, 0, 6, 0.15);
+            border-radius: 6px;
+            padding: 10px 14px;
+            text-align: center;
+        }
+        .tier-name {
+            font-weight: bold;
+            font-size: 13px;
+            color: #333;
+        }
+        .tier-range {
+            font-size: 12px;
+            color: #F90006;
+            font-weight: bold;
+        }
+        .tier-desc {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px;
+        }
+        .channels-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .channel-chip {
+            background: rgba(249, 0, 6, 0.04);
+            border: 1px solid rgba(249, 0, 6, 0.15);
+            border-radius: 6px;
+            padding: 10px 14px;
+        }
+        .channel-chip-name {
+            font-weight: bold;
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        .channel-chip-desc {
+            font-size: 11px;
+            color: #888;
+        }
+        .engagement-bar {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            font-size: 13px;
+        }
+        .engagement-item {
+            display: flex;
+            gap: 6px;
+        }
+        .engagement-label {
+            font-weight: bold;
+            color: #333;
+        }
+        .engagement-value {
+            color: #555;
+        }
+
+        /* Advisory section */
+        .advisory-section {
+            margin-top: 8px;
+            padding: 20px 24px;
+            border: 1px dashed rgba(0,0,0,0.15);
+            border-radius: 8px;
+            background: transparent;
+        }
+        .advisory-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+        .advisory-name {
+            font-weight: bold;
+            font-size: 16px;
+            color: #666;
+        }
+        .advisory-tag {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #999;
+            border: 1px solid #ccc;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+        .advisory-desc {
+            color: #888;
+            font-size: 14px;
+        }
+
         .two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -183,29 +339,185 @@
 
         <div class="section">
             <h2>WHAT WE DO</h2>
-            <div class="product-row">
-                <div class="product-name">Deal Closing</div>
-                <div class="product-desc">We own your deals start-to-finish. Choreograph with your team, drive to closed revenue.</div>
+
+            <!-- PRODUCT 1: Deal Closing -->
+            <div class="product-card">
+                <div class="product-card-header">
+                    <div class="product-card-name">Deal Closing</div>
+                    <span class="product-card-tag">Core Product</span>
+                </div>
+                <div class="product-card-desc">
+                    We own your full sales cycle — from first call to closed revenue. We choreograph with your team, drive deals to close, and expand into existing accounts.
+                </div>
+
+                <div class="detail-block-label">Client Deal Size Segments</div>
+                <div class="tier-row">
+                    <div class="tier">
+                        <div class="tier-name">SMB</div>
+                        <div class="tier-range">$1 – 4K</div>
+                        <div class="tier-desc">deals</div>
+                    </div>
+                    <div class="tier">
+                        <div class="tier-name">Mid-Market</div>
+                        <div class="tier-range">5 – 6 Figures</div>
+                        <div class="tier-desc">deals</div>
+                    </div>
+                    <div class="tier">
+                        <div class="tier-name">Enterprise</div>
+                        <div class="tier-range">7+ Figures</div>
+                        <div class="tier-desc">deals</div>
+                    </div>
+                </div>
+
+                <div class="product-details" style="margin-top: 16px;">
+                    <div class="detail-block">
+                        <div class="detail-block-label">What We Do</div>
+                        <ul>
+                            <li>Run the full sales cycle (calls, demos, proposals, negotiation, close)</li>
+                            <li>Account expansion — map new departments + upsell/cross-sell existing</li>
+                            <li>B2B and B2B2C activation</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <div class="detail-block-label">Prerequisites</div>
+                        <ul>
+                            <li>Pipeline must exist</li>
+                            <li>Product-market fit proven</li>
+                            <li>Strong customer set</li>
+                            <li>Access to SE / SME as needed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="engagement-bar">
+                    <div class="engagement-item">
+                        <span class="engagement-label">Minimum:</span>
+                        <span class="engagement-value">6 months (adjusts to sales cycle)</span>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="engagement-label">Pricing:</span>
+                        <span class="engagement-value">Retainer + rev share on closed revenue</span>
+                    </div>
+                </div>
             </div>
-            <div class="product-row">
-                <div class="product-name">Account Expansion</div>
-                <div class="product-desc">Grow existing accounts into new departments, teams, and locations.</div>
+
+            <!-- PRODUCT 2: Demand Gen -->
+            <div class="product-card">
+                <div class="product-card-header">
+                    <div class="product-card-name">Demand Gen</div>
+                    <span class="product-card-tag">Core Product</span>
+                </div>
+                <div class="product-card-desc">
+                    Full-funnel demand generation — partnerships, network activation, events, outreach, and thought leadership positioning to fill and grow your pipeline. Our biggest and most complex product.
+                </div>
+
+                <div class="detail-block-label">Channels</div>
+                <div class="channels-grid">
+                    <div class="channel-chip">
+                        <div class="channel-chip-name">Partnerships</div>
+                        <div class="channel-chip-desc">Referral, co-sell, channel, strategic alliances</div>
+                    </div>
+                    <div class="channel-chip">
+                        <div class="channel-chip-name">Warm Network</div>
+                        <div class="channel-chip-desc">Advisors, board, customers, clients — map to target accounts, craft the ask</div>
+                    </div>
+                    <div class="channel-chip">
+                        <div class="channel-chip-name">Events</div>
+                        <div class="channel-chip-desc">Host roundtables, attend conferences, in-person presence</div>
+                    </div>
+                    <div class="channel-chip">
+                        <div class="channel-chip-name">Outreach</div>
+                        <div class="channel-chip-desc">Calling, email, text, showing up in person</div>
+                    </div>
+                    <div class="channel-chip">
+                        <div class="channel-chip-name">Thought Leadership</div>
+                        <div class="channel-chip-desc">CEO positioning strategy + newsletter ghostwriting</div>
+                    </div>
+                    <div class="channel-chip">
+                        <div class="channel-chip-name">Story & Database</div>
+                        <div class="channel-chip-desc">Build the narrative, build the target database</div>
+                    </div>
+                </div>
+
+                <div class="product-details" style="margin-top: 16px;">
+                    <div class="detail-block">
+                        <div class="detail-block-label">How We Work</div>
+                        <ul>
+                            <li>Collaborative — we execute most channels</li>
+                            <li>If client has resources, we guide execution</li>
+                            <li>All warm outreach approved by client before sending</li>
+                            <li>Surface low-hanging fruit in old clients and leads</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <div class="detail-block-label">Getting Started</div>
+                        <ul>
+                            <li>Option: 2-week or 30-day diagnostic pilot</li>
+                            <li>Assess demand gen opportunity before full retainer</li>
+                            <li>Full-funnel output: meetings, pipeline, awareness, intros</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="engagement-bar">
+                    <div class="engagement-item">
+                        <span class="engagement-label">Pilot:</span>
+                        <span class="engagement-value">2-week or 30-day diagnostic available</span>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="engagement-label">Pricing:</span>
+                        <span class="engagement-value">Retainer + performance (meetings / pipeline)</span>
+                    </div>
+                </div>
             </div>
-            <div class="product-row">
-                <div class="product-name">Demand Gen</div>
-                <div class="product-desc">Network activation, partnerships, events, and targeted outreach to fill the funnel.</div>
+
+            <!-- PRODUCT 3: Rev Ops / Architecture -->
+            <div class="product-card">
+                <div class="product-card-header">
+                    <div class="product-card-name">Rev Ops / Architecture</div>
+                    <span class="product-card-tag">Core Product</span>
+                </div>
+                <div class="product-card-desc">
+                    Understand how your revenue engine is trending — starting with a free diagnostic that feeds into a larger architecture engagement.
+                </div>
+
+                <div class="product-details">
+                    <div class="detail-block">
+                        <div class="detail-block-label">Free Diagnostic</div>
+                        <ul>
+                            <li>Ingest software spend and current tech stack</li>
+                            <li>Learn your workflow and process</li>
+                            <li>Review pipeline data to see under the hood</li>
+                            <li>Offer perspective on low-hanging fruit from cross-client patterns</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <div class="detail-block-label">Paid Engagement</div>
+                        <ul>
+                            <li>Build and architect the rev ops stack</li>
+                            <li>Design reporting frameworks and tool connections</li>
+                            <li>See what's working, cut what isn't</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="engagement-bar">
+                    <div class="engagement-item">
+                        <span class="engagement-label">Entry Point:</span>
+                        <span class="engagement-value">Free diagnostic — personalized and no-commitment</span>
+                    </div>
+                </div>
             </div>
-            <div class="product-row">
-                <div class="product-name">Thought Leadership</div>
-                <div class="product-desc">Newsletters, content, and video that position you as the expert.</div>
-            </div>
-            <div class="product-row">
-                <div class="product-name">Advisory</div>
-                <div class="product-desc">Product and revenue-focused coaching. Game tape review tied to outcomes.</div>
-            </div>
-            <div class="product-row">
-                <div class="product-name">Rev Ops</div>
-                <div class="product-desc">Reporting frameworks and tool connections. See what's working, cut what isn't.</div>
+
+            <!-- ADVISORY (not a product) -->
+            <div class="advisory-section">
+                <div class="advisory-header">
+                    <div class="advisory-name">Advisory</div>
+                    <span class="advisory-tag">Relationship-Driven</span>
+                </div>
+                <div class="advisory-desc">
+                    We work with companies and people we believe in. Not charged hourly — we have conversations about revenue motion and see if we can be helpful. Board seats and equity-based relationships are a goal.
+                </div>
             </div>
         </div>
 
@@ -215,18 +527,18 @@
                 <div class="col">
                     <h3>Private Equity</h3>
                     <div class="relationship-item">
-                        <strong>1315 Capital → Triple Ring Technologies</strong><br>
+                        <strong>1315 Capital &rarr; Triple Ring Technologies</strong><br>
                         Late-stage deal (12-mo contract)
                     </div>
                     <div class="relationship-item">
-                        <strong>Boathouse → Analytics 8</strong><br>
+                        <strong>Boathouse &rarr; Analytics 8</strong><br>
                         Active client ($25M rev services firm)
                     </div>
                 </div>
                 <div class="col">
                     <h3>Venture Capital</h3>
                     <div class="vc-list">
-                        Lerer Hippeau · Benchstrength · GTM Fund · Tip Top Ventures · Essential Capital · Headline
+                        Lerer Hippeau &middot; Benchstrength &middot; GTM Fund &middot; Tip Top Ventures &middot; Essential Capital &middot; Headline
                     </div>
                 </div>
             </div>
@@ -317,27 +629,15 @@
         <h3 class="table-title">SERVICE FIT SIGNALS</h3>
         <div class="signal-row">
             <div class="signal-name">Deal Closing</div>
-            <div class="signal-desc">Pipeline exists but reps struggling to convert. Founder-led sales hitting ceiling.</div>
-        </div>
-        <div class="signal-row">
-            <div class="signal-name">Account Expansion</div>
-            <div class="signal-desc">Customer base exists, NRR under 100%, no expansion playbook.</div>
+            <div class="signal-desc">Pipeline exists but reps struggling to convert. Founder-led sales hitting ceiling. Existing accounts under-expanded, NRR under 100%, no expansion playbook.</div>
         </div>
         <div class="signal-row">
             <div class="signal-name">Demand Gen</div>
-            <div class="signal-desc">Product ready, sales team idle, top-of-funnel starving.</div>
+            <div class="signal-desc">Product ready, sales team idle, top-of-funnel starving. No partnership engine, warm network untapped, events sporadic or nonexistent. Founder has POV but no platform.</div>
         </div>
         <div class="signal-row">
-            <div class="signal-name">Thought Leadership</div>
-            <div class="signal-desc">Founder has POV but no platform, entering competitive market.</div>
-        </div>
-        <div class="signal-row">
-            <div class="signal-name">Advisory</div>
-            <div class="signal-desc">Strategic inflection point, scaling decisions pending, need outside lens.</div>
-        </div>
-        <div class="signal-row">
-            <div class="signal-name">Rev Ops</div>
-            <div class="signal-desc">5+ reps, systems duct-taped, data unreliable, scaling pain.</div>
+            <div class="signal-name">Rev Ops / Architecture</div>
+            <div class="signal-desc">5+ reps, systems duct-taped, data unreliable, scaling pain. No visibility into what's working.</div>
         </div>
     </div>
 
