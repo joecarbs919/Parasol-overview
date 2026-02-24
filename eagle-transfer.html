@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parasol × Eagle Transfer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page setup */
+        @page {
+            size: 8.5in 11in;
+            margin: 0;
+        }
+        .page {
+            width: 8.5in;
+            height: 11in;
+            padding: 56px 64px;
+            position: relative;
+            overflow: hidden;
+            background-color: #FFF1E3;
+        }
+        @media print {
+            .page {
+                page-break-after: always;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            body { background: none; }
+        }
+        @media screen {
+            body { background: #d4d0cc; padding: 20px 0; }
+            .page {
+                margin: 0 auto 24px auto;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            }
+        }
+
+        /* Typography */
+        .page-label {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #F90006;
+            margin-bottom: 24px;
+        }
+        h1 {
+            color: #F90006;
+            font-size: 36px;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            font-weight: bold;
+        }
+        h2 {
+            color: #F90006;
+            font-size: 26px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        h3 {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+            max-width: 520px;
+        }
+        .body-text {
+            color: #444;
+            font-size: 14px;
+            line-height: 1.65;
+            max-width: 580px;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+            background-color: #F90006;
+            padding: 3px 10px;
+            border-radius: 3px;
+        }
+        .tag-outline {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #F90006;
+            border: 1px solid #F90006;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 20px 24px;
+        }
+        .card-accent {
+            background: white;
+            border-left: 4px solid #F90006;
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+        }
+
+        /* Stat callouts */
+        .stat-hero {
+            font-size: 44px;
+            font-weight: bold;
+            color: #F90006;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        th {
+            background-color: #F90006;
+            color: white;
+            text-align: left;
+            padding: 10px 14px;
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            vertical-align: top;
+            color: #444;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(249, 0, 6, 0.025);
+        }
+
+        /* Utility */
+        .flex { display: flex; }
+        .flex-col { display: flex; flex-direction: column; }
+        .gap-8 { gap: 8px; }
+        .gap-12 { gap: 12px; }
+        .gap-16 { gap: 16px; }
+        .gap-20 { gap: 20px; }
+        .gap-24 { gap: 24px; }
+        .mt-8 { margin-top: 8px; }
+        .mt-12 { margin-top: 12px; }
+        .mt-16 { margin-top: 16px; }
+        .mt-20 { margin-top: 20px; }
+        .mt-24 { margin-top: 24px; }
+        .mt-32 { margin-top: 32px; }
+        .mt-40 { margin-top: 40px; }
+
+        /* Cover */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .cover-logo {
+            max-width: 180px;
+        }
+        .cover-title {
+            font-size: 42px;
+            font-weight: bold;
+            color: #F90006;
+            line-height: 1.15;
+            max-width: 560px;
+        }
+        .cover-subtitle {
+            font-size: 17px;
+            color: #666;
+            line-height: 1.5;
+            max-width: 480px;
+            margin-top: 16px;
+        }
+        .cover-footer {
+            font-size: 11px;
+            color: #999;
+            letter-spacing: 0.3px;
+        }
+
+        /* Stat strip */
+        .stat-strip {
+            display: flex;
+            gap: 0;
+            margin: 20px 0;
+        }
+        .stat-strip-item {
+            flex: 1;
+            text-align: center;
+            padding: 16px 12px;
+            border-right: 1px solid rgba(0,0,0,0.06);
+        }
+        .stat-strip-item:last-child {
+            border-right: none;
+        }
+        .stat-strip-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #F90006;
+        }
+        .stat-strip-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 2px;
+        }
+
+        /* Detail grid */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .detail-label {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #F90006;
+            margin-bottom: 6px;
+        }
+        .detail-list {
+            list-style: none;
+            padding: 0;
+            font-size: 13px;
+        }
+        .detail-list li {
+            padding: 3px 0;
+            color: #555;
+        }
+        .detail-list li::before {
+            content: "\2022";
+            color: #F90006;
+            font-weight: bold;
+            display: inline-block;
+            width: 12px;
+        }
+
+        /* Case studies */
+        .case-card {
+            background: white;
+            border-left: 4px solid #F90006;
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+        }
+        .case-card:last-child {
+            margin-bottom: 0;
+        }
+        .case-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .case-name {
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+        .case-tag {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .case-stat {
+            font-size: 36px;
+            font-weight: bold;
+            color: #F90006;
+            line-height: 1;
+        }
+        .case-stat-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 3px;
+            margin-bottom: 8px;
+        }
+        .case-desc {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Differentiators */
+        .diff-block {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        .diff-block:last-child {
+            border-bottom: none;
+        }
+        .diff-num {
+            font-size: 32px;
+            font-weight: bold;
+            color: rgba(249, 0, 6, 0.12);
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+        .diff-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .diff-desc {
+            font-size: 13px;
+            color: #555;
+            max-width: 560px;
+            line-height: 1.55;
+        }
+
+        /* Next steps */
+        .next-step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .next-step-num {
+            font-size: 32px;
+            font-weight: bold;
+            color: #F90006;
+            line-height: 1;
+            min-width: 36px;
+        }
+        .next-step-title {
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        .next-step-owner {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #F90006;
+            margin-bottom: 2px;
+        }
+        .next-step-desc {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Phase cards */
+        .phase-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+        }
+        .phase-card-accent {
+            background: white;
+            border-left: 4px solid #F90006;
+            border-radius: 0 8px 8px 0;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+        }
+        .phase-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .phase-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        .phase-desc {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        /* Comparison table */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 140px 1fr 1fr;
+            font-size: 12px;
+        }
+        .compare-header {
+            background: #F90006;
+            color: white;
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 10px 14px;
+        }
+        .compare-header:first-child {
+            border-radius: 8px 0 0 0;
+        }
+        .compare-header:last-child {
+            border-radius: 0 8px 0 0;
+        }
+        .compare-cell {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            color: #555;
+        }
+        .compare-label {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            font-weight: bold;
+            color: #333;
+            font-size: 12px;
+        }
+        .compare-grid > :nth-child(6n+4),
+        .compare-grid > :nth-child(6n+5),
+        .compare-grid > :nth-child(6n+6) {
+            background: rgba(249, 0, 6, 0.025);
+        }
+
+        /* Callout */
+        .callout {
+            padding: 14px 18px;
+            background: rgba(249, 0, 6, 0.04);
+            border-left: 3px solid #F90006;
+            border-radius: 0 6px 6px 0;
+            font-size: 13px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .callout strong {
+            color: #333;
+        }
+
+        /* Footer */
+        .page-footer {
+            position: absolute;
+            bottom: 40px;
+            left: 64px;
+            right: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .page-footer img {
+            max-width: 120px;
+            opacity: 0.6;
+        }
+        .page-footer-text {
+            font-size: 10px;
+            color: #bbb;
+        }
+
+        /* Contact */
+        .contact-block {
+            margin-top: 32px;
+            padding: 20px 24px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .contact-label {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #F90006;
+            margin-bottom: 8px;
+        }
+        .contact-line {
+            font-size: 14px;
+            color: #555;
+            padding: 2px 0;
+        }
+
+        /* Compact detail grid for scope */
+        .detail-grid-compact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .detail-grid-compact .detail-label {
+            font-size: 9px;
+            margin-bottom: 4px;
+        }
+        .detail-grid-compact .detail-list {
+            font-size: 11px;
+        }
+        .detail-grid-compact .detail-list li {
+            padding: 1.5px 0;
+            color: #555;
+        }
+        /* ================================================ */
+        /* MOBILE RESPONSIVE                                */
+        /* ================================================ */
+        @media screen and (max-width: 768px) {
+            body {
+                background: #FFF1E3;
+                padding: 0;
+            }
+            .page {
+                width: 100%;
+                height: auto;
+                min-height: 0;
+                padding: 32px 20px 60px 20px;
+                overflow: visible;
+                box-shadow: none;
+                margin: 0;
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+            }
+            .page-footer {
+                position: static;
+                margin-top: 32px;
+                padding-top: 16px;
+                border-top: 1px solid rgba(0,0,0,0.06);
+            }
+
+            /* Cover */
+            .cover-title {
+                font-size: 28px;
+            }
+            .cover-subtitle {
+                font-size: 14px;
+                max-width: 100%;
+            }
+            .cover-logo {
+                max-width: 140px;
+            }
+
+            /* Typography */
+            h1 { font-size: 28px; }
+            h2 { font-size: 22px; margin-bottom: 14px; }
+            h3 { font-size: 16px; }
+            .page-label { margin-bottom: 16px; }
+            .body-text {
+                max-width: 100%;
+                font-size: 13px;
+            }
+            .subtitle {
+                max-width: 100%;
+                font-size: 14px;
+            }
+
+            /* Stat strip — stack vertically */
+            .stat-strip {
+                flex-direction: column;
+                gap: 0;
+            }
+            .stat-strip-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                padding: 12px;
+                text-align: left;
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+            }
+            .stat-strip-item:last-child {
+                border-bottom: none;
+            }
+
+            /* Tables */
+            table { font-size: 11px; }
+            th { padding: 8px 10px; font-size: 10px; }
+            td { padding: 8px 10px; }
+
+            /* Grids — single column */
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .detail-grid-compact {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Cards */
+            .card { padding: 16px; }
+            .card-accent { padding: 16px; }
+            .phase-card { padding: 14px 16px; }
+            .phase-card-accent { padding: 14px 16px; }
+            .case-card { padding: 14px 16px !important; }
+
+            /* Callout */
+            .callout { font-size: 12px; padding: 12px 14px; }
+
+            /* Next steps */
+            .next-step { gap: 12px; margin-bottom: 16px; }
+            .next-step-num { font-size: 24px; min-width: 28px; }
+            .next-step-desc { font-size: 11px; }
+
+            /* Diff blocks */
+            .diff-num { font-size: 24px !important; }
+            .diff-title { font-size: 14px !important; }
+            .diff-desc { font-size: 11px !important; }
+
+            /* Scope inline grids */
+            .deliverables-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* Small phones */
+        @media screen and (max-width: 400px) {
+            .page {
+                padding: 24px 16px 48px 16px;
+            }
+            .cover-title { font-size: 24px; }
+            h2 { font-size: 20px; }
+            table { font-size: 10px; }
+            th { padding: 6px 8px; font-size: 9px; }
+            td { padding: 6px 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================ -->
+    <!-- PAGE 1: COVER                                    -->
+    <!-- ================================================ -->
+    <div class="page">
+        <div class="cover">
+            <div>
+                <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol" class="cover-logo">
+            </div>
+            <div>
+                <div class="cover-title">Demand Generation + Revenue Operations</div>
+                <div class="cover-subtitle">Build Eagle Transfer a signal-led pipeline engine that generates qualified meetings &mdash; so the sales team stops prospecting and starts closing.</div>
+            </div>
+            <div class="cover-footer">Prepared for Eagle Transfer &nbsp;&middot;&nbsp; February 2026 &nbsp;&middot;&nbsp; Confidential</div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PAGE 2: THE PROBLEM                              -->
+    <!-- ================================================ -->
+    <div class="page">
+        <div class="page-label">Executive Summary</div>
+        <h2 style="max-width: 540px;">Five sellers. Almost no time selling.</h2>
+
+        <div class="body-text" style="margin-bottom: 20px;">
+            Eagle has a five-person sales team that closes when they&rsquo;re in front of the right buyer. The problem is they rarely are. Reps split time between estimating, project management, billing, and prospecting. Cold sequences built years ago aren&rsquo;t converting against enterprise targets, and the CRM is full of stale data.
+        </div>
+
+        <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 24px;">
+            <div class="stat-strip" style="margin: 0;">
+                <div class="stat-strip-item">
+                    <div class="stat-strip-value">160+</div>
+                    <div class="stat-strip-label">Hours / Month Lost</div>
+                </div>
+                <div class="stat-strip-item">
+                    <div class="stat-strip-value">5 Reps</div>
+                    <div class="stat-strip-label">Splitting Time</div>
+                </div>
+                <div class="stat-strip-item">
+                    <div class="stat-strip-value">~8 hrs</div>
+                    <div class="stat-strip-label">Per Rep / Week on Prospecting</div>
+                </div>
+                <div class="stat-strip-item">
+                    <div class="stat-strip-value">= 1 FTE</div>
+                    <div class="stat-strip-label">Closer Doing Zero Closing</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="body-text" style="margin-bottom: 24px;">
+            If each rep spends even 8 hours a week on failed prospecting and manual CRM work, that&rsquo;s the equivalent of a full-time closer producing nothing. Parasol eliminates that waste entirely.
+        </div>
+
+        <div class="callout">
+            <strong>Target:</strong> Build a repeatable, signal-led pipeline engine that generates 8&ndash;15 qualified meetings per month with enterprise decision-makers &mdash; freeing Eagle&rsquo;s team to focus on estimates, site visits, and closing.
+        </div>
+
+        <div class="page-footer">
+            <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol">
+            <div class="page-footer-text">Confidential &mdash; Prepared for Eagle Transfer</div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PAGE 3: SCOPE — PHASE 1                          -->
+    <!-- ================================================ -->
+    <div class="page">
+        <div class="page-label">Scope of Work</div>
+        <h2>Phase 1 &mdash; Foundation + Signal-Led Sprint</h2>
+        <div style="font-size: 13px; color: #888; margin-top: -14px; margin-bottom: 20px;">Month 1</div>
+
+        <!-- Rev Ops -->
+        <div class="phase-card-accent">
+            <div class="phase-header">
+                <div class="phase-name">Revenue Operations</div>
+                <span class="tag">Foundation</span>
+            </div>
+            <div class="detail-grid-compact">
+                <div>
+                    <div class="detail-label">Signal Workflows That Drive Action</div>
+                    <ul class="detail-list">
+                        <li>Clay setup + HubSpot integration: signal monitoring for lease expirations, company moves, job changes</li>
+                        <li>Automated tasks pushed to reps daily &mdash; &ldquo;Call this person, here&rsquo;s why, here&rsquo;s context&rdquo;</li>
+                        <li>Every signal-fired lead arrives enriched with title, company, contact info, and trigger reason</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="detail-label">Pipeline Infrastructure</div>
+                    <ul class="detail-list">
+                        <li>HubSpot audit: deduplicate contacts, standardize deal stages, fix lifecycle mapping</li>
+                        <li>Dashboard buildout: pipeline visibility, rep activity, source attribution</li>
+                        <li>ICP definition + qualified meeting criteria workshop with Andrew</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Outbound -->
+        <div class="phase-card-accent">
+            <div class="phase-header">
+                <div class="phase-name">Outbound Sprint</div>
+                <span class="tag">Tenant In-Market</span>
+            </div>
+            <div class="detail-grid-compact">
+                <div>
+                    <div class="detail-label">Target Building</div>
+                    <ul class="detail-list">
+                        <li>Companies with active / upcoming lease events in NYC metro</li>
+                        <li>Facilities, procurement, and RE decision-makers at financial institutions + tech</li>
+                        <li>Lease signals via Clay (CoStar/Comstack API or manual research as bridge)</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="detail-label">Execution</div>
+                    <ul class="detail-list">
+                        <li>Multi-channel: email sequences, LinkedIn, text &mdash; all written back to HubSpot</li>
+                        <li>Prospecting completely removed from Eagle&rsquo;s team</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deliverables -->
+        <div style="margin-top: 16px;">
+            <div class="detail-label" style="margin-bottom: 8px;">Phase 1 Deliverables</div>
+            <div class="deliverables-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px;">
+                <div style="display: flex; align-items: flex-start; gap: 6px; color: #555;">
+                    <span style="color: #F90006; font-weight: bold;">&#10003;</span> Signal workflows pushing qualified leads to reps daily
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 6px; color: #555;">
+                    <span style="color: #F90006; font-weight: bold;">&#10003;</span> Live Clay monitoring lease signals across NYC metro
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 6px; color: #555;">
+                    <span style="color: #F90006; font-weight: bold;">&#10003;</span> HubSpot dashboards for pipeline + activity tracking
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 6px; color: #555;">
+                    <span style="color: #F90006; font-weight: bold;">&#10003;</span> Active outbound running + first meetings booked
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol">
+            <div class="page-footer-text">Confidential &mdash; Prepared for Eagle Transfer</div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PAGE 4: SCOPE — PHASE 2 + BOUNDARIES             -->
+    <!-- ================================================ -->
+    <div class="page">
+        <div class="page-label">Scope of Work</div>
+        <h2>Phase 2 &mdash; Scaled Engine</h2>
+        <div style="font-size: 13px; color: #888; margin-top: -14px; margin-bottom: 20px;">Months 2&ndash;6</div>
+
+        <div class="phase-card">
+            <div class="detail-grid-compact">
+                <div>
+                    <div class="detail-label">Expand &amp; Optimize</div>
+                    <ul class="detail-list">
+                        <li>Expand outbound into additional verticals: tech, law firms, other commercial tenants</li>
+                        <li>Optimize sequences from Phase 1 data &mdash; A/B test messaging, call scripts, value props</li>
+                        <li>Scale signal monitoring: new lease announcements, headcount growth, leadership changes</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="detail-label">Activate &amp; Reactivate</div>
+                    <ul class="detail-list">
+                        <li>Warm network activation: map Eagle&rsquo;s relationships to target accounts</li>
+                        <li>Reactivation campaign through existing database of past clients &amp; stalled deals</li>
+                        <li>Weekly reporting + monthly strategic review</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 3 callout -->
+        <div style="margin-top: 24px; margin-bottom: 28px;">
+            <div class="detail-label" style="margin-bottom: 8px;">Future Add-On (Not Priced)</div>
+            <div class="card" style="padding: 14px 18px;">
+                <div style="font-size: 13px; font-weight: bold; color: #333; margin-bottom: 4px;">Structured Networking Events</div>
+                <div style="font-size: 12px; color: #555; line-height: 1.5;">
+                    Executive dinners with heads of RE, facilities, and procurement at major NYC companies. Eagle&rsquo;s minority-owned and female-owned certifications position them for enterprise vendor diversity programs at targets like JPMorgan, Goldman, and Citi. Details scoped separately once the outbound engine is producing consistently.
+                </div>
+            </div>
+        </div>
+
+        <!-- Out of scope -->
+        <div style="margin-top: 8px;">
+            <div class="detail-label" style="margin-bottom: 8px;">Boundaries</div>
+            <div style="font-size: 12px; color: #555; line-height: 1.6;">
+                Eagle owns all estimates, project management, servicing, billing, and contract negotiation. Eagle&rsquo;s process requires physical site visits and custom estimates &mdash; <strong style="color: #333;">Parasol generates and qualifies meetings; Eagle closes.</strong> Parasol does not manage internal sales performance, hiring, or training outside of CRM adoption.
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol">
+            <div class="page-footer-text">Confidential &mdash; Prepared for Eagle Transfer</div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PAGE 5: COMPENSATION                             -->
+    <!-- ================================================ -->
+    <div class="page">
+        <div class="page-label">Compensation</div>
+        <h2>Investment &amp; Performance Alignment</h2>
+
+        <div class="body-text" style="margin-bottom: 24px;">
+            Phase 1 carries a higher retainer because it includes the one-time infrastructure buildout &mdash; Clay platform, HubSpot architecture, signal workflow engineering, and enrichment tooling. Phase 2 shifts to a lower retainer as the system moves into steady-state execution. A 1% revenue variable on Parasol-sourced closed deals aligns long-term incentives in perpetuity.
+        </div>
+
+        <!-- Retainer table -->
+        <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 24px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40%;"></th>
+                        <th style="width: 30%;">Phase 1 (Month 1)</th>
+                        <th style="width: 30%;">Phase 2 (Months 2&ndash;6)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; color: #333;">Monthly Retainer</td>
+                        <td>$12,000</td>
+                        <td>$8,000</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333;">Revenue Variable</td>
+                        <td colspan="2" style="font-size: 11px;">1% of closed revenue on Parasol-sourced deals &mdash; in perpetuity</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333;">Includes</td>
+                        <td style="font-size: 11px;">Rev Ops buildout, Clay platform + tooling, outbound launch</td>
+                        <td style="font-size: 11px;">Scaled outbound + optimization</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Total economics -->
+        <div class="detail-label" style="margin-bottom: 10px;">Total Engagement Economics</div>
+        <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 24px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 34%;"></th>
+                        <th style="width: 22%;">Phase 1</th>
+                        <th style="width: 22%;">Phase 2 (5 mo)</th>
+                        <th style="width: 22%;">Total (6 mo)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; color: #333;">Retainer</td>
+                        <td>$12,000</td>
+                        <td>$40,000</td>
+                        <td style="font-weight: bold;">$52,000</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333;">Revenue Variable</td>
+                        <td colspan="3" style="font-size: 11px;">1% of closed revenue on Parasol-sourced deals &mdash; ongoing</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333;">Total Fixed</td>
+                        <td style="font-weight: bold; color: #F90006;">$12,000</td>
+                        <td style="font-weight: bold; color: #F90006;">$40,000</td>
+                        <td style="font-weight: bold; color: #F90006;">$52,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="font-size: 11px; color: #888; line-height: 1.6;">
+            6-month minimum. Revenue variable applies to all Parasol-sourced deals that close, with no expiration. Either party may terminate with 30 days written notice after the initial commitment.
+        </div>
+
+        <div class="page-footer">
+            <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol">
+            <div class="page-footer-text">Confidential &mdash; Prepared for Eagle Transfer</div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PAGE 6: WHY PARASOL + ROI                        -->
+    <!-- ================================================ -->
+    <div class="page">
+        <div class="page-label" style="margin-bottom: 12px;">Why Parasol</div>
+        <h2 style="margin-bottom: 10px;">What You&rsquo;re Actually Buying</h2>
+
+        <div style="font-size: 13px; color: #444; line-height: 1.5; margin-bottom: 12px;">
+            A BDR costs less on paper. But a BDR doesn&rsquo;t come with infrastructure, and Andrew shouldn&rsquo;t have to build it.
+        </div>
+
+        <!-- Comparison — honest framing -->
+        <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 12px;">
+            <table style="font-size: 11px;">
+                <thead>
+                    <tr>
+                        <th style="width: 28%; padding: 7px 12px;">&#8203;</th>
+                        <th style="width: 36%; padding: 7px 12px;">Parasol (6 months)</th>
+                        <th style="width: 36%; padding: 7px 12px;">In-House BDR (6 months)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">Person</td>
+                        <td style="padding: 6px 12px;">Dedicated outbound team</td>
+                        <td style="padding: 6px 12px;">1 junior hire &mdash; $40&ndash;60K/6 mo</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">Signal Engine</td>
+                        <td style="padding: 6px 12px;">Clay, lease signals, enrichment &mdash; included</td>
+                        <td style="padding: 6px 12px;">Buy Clay + find someone to build it</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">CRM / Rev Ops</td>
+                        <td style="padding: 6px 12px;">HubSpot rebuild, dashboards, automation &mdash; included</td>
+                        <td style="padding: 6px 12px;">Stays broken, or hire a consultant</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">Ramp Time</td>
+                        <td style="padding: 6px 12px;">2 weeks</td>
+                        <td style="padding: 6px 12px;">3&ndash;6 months</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">Management</td>
+                        <td style="padding: 6px 12px;">Parasol runs it &mdash; zero hours from Andrew</td>
+                        <td style="padding: 6px 12px;">Andrew manages hiring, training, turnover</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">If It Doesn&rsquo;t Work</td>
+                        <td style="padding: 6px 12px;">Walk away after 6 months</td>
+                        <td style="padding: 6px 12px;">Severance + restart the search</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="callout" style="margin-bottom: 10px; font-size: 11px; padding: 10px 14px;">
+            <strong>The real cost of &ldquo;just hire a BDR&rdquo;:</strong> Salary + benefits + Clay subscription + someone to configure Clay + Rev Ops consulting + 3&ndash;6 months of zero output while they ramp + Andrew&rsquo;s time managing them. Parasol is one line item that replaces all of it.
+        </div>
+
+        <div class="callout" style="margin-bottom: 14px; font-size: 11px; padding: 10px 14px;">
+            <strong>Time returned to Eagle&rsquo;s sales team:</strong> ~160 hours/month of prospecting and CRM busywork eliminated. A full seller&rsquo;s capacity redirected to estimates, site visits, and closing.
+        </div>
+
+        <!-- ROI -->
+        <div class="detail-label" style="margin-bottom: 6px;">ROI to Eagle Transfer</div>
+        <div style="font-size: 11px; color: #555; margin-bottom: 8px;">Two Parasol-sourced deals close in the first 6 months:</div>
+
+        <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 8px;">
+            <table style="font-size: 11px;">
+                <thead>
+                    <tr>
+                        <th style="width: 40%; padding: 6px 12px;">&#8203;</th>
+                        <th style="width: 20%; padding: 6px 12px;">Deal 1</th>
+                        <th style="width: 20%; padding: 6px 12px;">Deal 2</th>
+                        <th style="width: 20%; padding: 6px 12px;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">Deal Size</td>
+                        <td style="padding: 6px 12px;">$150,000</td>
+                        <td style="padding: 6px 12px;">$300,000</td>
+                        <td style="font-weight: bold; padding: 6px 12px;">$450,000</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">1% Variable</td>
+                        <td style="padding: 6px 12px;">$1,500</td>
+                        <td style="padding: 6px 12px;">$3,000</td>
+                        <td style="font-weight: bold; padding: 6px 12px;">$4,500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <table style="font-size: 11px;">
+                <tbody>
+                    <tr>
+                        <td style="width: 50%; font-weight: bold; color: #333; padding: 6px 12px;">Revenue to Eagle</td>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">$450,000</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 6px 12px;">Total Parasol Cost (retainer + variable)</td>
+                        <td style="padding: 6px 12px;">$56,500</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #F90006; padding: 8px 12px;">Net Revenue to Eagle</td>
+                        <td style="font-weight: bold; color: #F90006; font-size: 16px; padding: 8px 12px;">$393,500</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #333; padding: 8px 12px;">Return on Investment</td>
+                        <td style="font-weight: bold; color: #F90006; font-size: 16px; padding: 8px 12px;">~8x</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol">
+            <div class="page-footer-text">Confidential &mdash; Prepared for Eagle Transfer</div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PAGE 7: WHY IT WORKS + CASE STUDIES              -->
+    <!-- ================================================ -->
+    <div class="page">
+        <div class="page-label" style="margin-bottom: 16px;">Track Record</div>
+        <h2 style="margin-bottom: 14px;">What Makes This Work</h2>
+
+        <div style="margin-bottom: 14px;">
+            <div class="diff-block" style="padding: 8px 0 8px 0;">
+                <div class="diff-num" style="font-size: 24px;">01</div>
+                <div class="diff-title" style="font-size: 14px;">Signal-Led, Not Spray-and-Pray</div>
+                <div class="diff-desc" style="font-size: 12px;">Clay-powered workflows surface companies actively moving &mdash; not cold lists from years ago. Eagle reaches targets when they&rsquo;re in buying mode.</div>
+            </div>
+            <div class="diff-block" style="padding: 8px 0;">
+                <div class="diff-num" style="font-size: 24px;">02</div>
+                <div class="diff-title" style="font-size: 14px;">Full Infrastructure Included</div>
+                <div class="diff-desc" style="font-size: 12px;">HubSpot cleanup, Clay setup, dashboards, and ongoing enrichment are part of the engagement &mdash; not add-on costs.</div>
+            </div>
+            <div class="diff-block" style="padding: 8px 0;">
+                <div class="diff-num" style="font-size: 24px;">03</div>
+                <div class="diff-title" style="font-size: 14px;">Minority &amp; Female-Owned Advantage</div>
+                <div class="diff-desc" style="font-size: 12px;">Eagle&rsquo;s certifications are a competitive differentiator at enterprise targets. Parasol weaves this into outbound messaging and positions Eagle for vendor diversity programs.</div>
+            </div>
+        </div>
+
+        <div class="detail-label" style="margin-bottom: 8px;">Client Results</div>
+
+        <div class="case-card" style="padding: 14px 20px; margin-bottom: 10px;">
+            <div class="case-header" style="margin-bottom: 4px;">
+                <div class="case-name">Nirvana Health</div>
+                <div class="case-tag">Series A &middot; Healthcare</div>
+            </div>
+            <div class="case-stat" style="font-size: 28px;">$3.7M</div>
+            <div class="case-stat-label" style="margin-bottom: 4px;">Revenue Closed in 12 Months</div>
+            <div class="case-desc">Full-cycle deal execution. Built and ran the commercial motion for a Series A company with no existing sales team.</div>
+        </div>
+
+        <div class="case-card" style="padding: 14px 20px; margin-bottom: 10px;">
+            <div class="case-header" style="margin-bottom: 4px;">
+                <div class="case-name">Atrix</div>
+                <div class="case-tag">Growth Stage &middot; B2B SaaS</div>
+            </div>
+            <div class="case-stat" style="font-size: 28px;">3x ARR</div>
+            <div class="case-stat-label" style="margin-bottom: 4px;">Revenue Tripled in 6 Months</div>
+            <div class="case-desc">Closed 4 Fortune 500 enterprise deals, each 6-figure+. New logo acquisition combined with systematic account expansion.</div>
+        </div>
+
+        <div class="case-card" style="padding: 14px 20px; margin-bottom: 0;">
+            <div class="case-header" style="margin-bottom: 4px;">
+                <div class="case-name">Analytics 8</div>
+                <div class="case-tag">PE-Backed &middot; Rev Ops</div>
+            </div>
+            <div class="case-stat" style="font-size: 22px;">Signal-Led DB</div>
+            <div class="case-stat-label" style="margin-bottom: 4px;">Rebuilt Database Powering Outbound at Scale</div>
+            <div class="case-desc">Rebuilt the signal-led database and enrichment infrastructure now powering their entire outbound motion.</div>
+        </div>
+
+        <div class="page-footer">
+            <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol">
+            <div class="page-footer-text">Confidential &mdash; Prepared for Eagle Transfer</div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- PAGE 8: NEXT STEPS                               -->
+    <!-- ================================================ -->
+    <div class="page">
+        <div class="page-label">Getting Started</div>
+        <h2>Next Steps</h2>
+        <div style="font-size: 14px; color: #666; margin-top: -12px; margin-bottom: 28px;">Target: Phase 1 kicks off the first week of March 2026.</div>
+
+        <div class="next-step">
+            <div class="next-step-num">1</div>
+            <div>
+                <div class="next-step-owner">Joe + Andrew &middot; This Week</div>
+                <div class="next-step-title">Execute Mutual NDA</div>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <div class="next-step-num">2</div>
+            <div>
+                <div class="next-step-owner">Andrew &middot; Within 2 Business Days of NDA</div>
+                <div class="next-step-title">Grant HubSpot Admin Access</div>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <div class="next-step-num">3</div>
+            <div>
+                <div class="next-step-owner">Andrew &middot; Week 1</div>
+                <div class="next-step-title">Discovery Data Package</div>
+                <div class="next-step-desc">Current client list, target account wish list, past proposals and win rates, any existing CoStar/Comstack data, sales team workflow docs</div>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <div class="next-step-num">4</div>
+            <div>
+                <div class="next-step-owner">Blair &middot; Week 1</div>
+                <div class="next-step-title">Clay Account Setup + HubSpot Integration</div>
+                <div class="next-step-desc">Parasol provisions and manages Clay; cost included in retainer</div>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <div class="next-step-num">5</div>
+            <div>
+                <div class="next-step-owner">Joe + Andrew &middot; Week 1</div>
+                <div class="next-step-title">ICP Workshop</div>
+                <div class="next-step-desc">60-minute working session: target verticals, company size, decision-maker titles, geographic boundaries, qualified meeting criteria</div>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <div class="next-step-num">6</div>
+            <div>
+                <div class="next-step-owner">Parasol Team &middot; March 2026</div>
+                <div class="next-step-title">Phase 1 Go-Live</div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol">
+            <div class="page-footer-text">Confidential &mdash; Prepared for Eagle Transfer</div>
+        </div>
+    </div>
+
+</body>
+</html>
