@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parasol × Elements Health Investors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page setup */
+        @page {
+            size: 8.5in 11in;
+            margin: 0;
+        }
+        .page {
+            width: 8.5in;
+            height: 11in;
+            padding: 56px 64px;
+            position: relative;
+            overflow: hidden;
+            background-color: #FFF1E3;
+        }
+        @media print {
+            .page { page-break-after: always; }
+            .page:last-child { page-break-after: auto; }
+            body { background: none; }
+        }
+        @media screen {
+            body { background: #d4d0cc; padding: 20px 0; }
+            .page {
+                margin: 0 auto 24px auto;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            }
+        }
+
+        /* Typography */
+        .page-label {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #F90006;
+            margin-bottom: 24px;
+        }
+        h1 {
+            color: #F90006;
+            font-size: 36px;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            font-weight: bold;
+        }
+        h2 {
+            color: #F90006;
+            font-size: 26px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        h3 {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .subtitle { color: #666; font-size: 16px; line-height: 1.5; max-width: 520px; }
+        .body-text { color: #444; font-size: 14px; line-height: 1.65; max-width: 580px; }
+
+        /* Tags */
+        .tag {
+            display: inline-block; font-size: 10px; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            color: white; background-color: #F90006;
+            padding: 3px 10px; border-radius: 3px;
+        }
+        .tag-outline {
+            display: inline-block; font-size: 10px; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            color: #F90006; border: 1px solid #F90006;
+            padding: 2px 8px; border-radius: 3px;
+        }
+
+        /* Cards */
+        .card {
+            background: white; border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px; padding: 20px 24px;
+        }
+        .card-accent {
+            background: white; border-left: 4px solid #F90006;
+            border-radius: 0 8px 8px 0; padding: 20px 24px;
+        }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th {
+            background-color: #F90006; color: white; text-align: left;
+            padding: 10px 14px; font-weight: bold; font-size: 11px;
+            text-transform: uppercase; letter-spacing: 0.3px;
+        }
+        td {
+            padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06);
+            vertical-align: top; color: #444;
+        }
+        tr:nth-child(even) { background-color: rgba(249, 0, 6, 0.025); }
+
+        /* Cover */
+        .cover { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+        .cover-logo { max-width: 180px; }
+        .cover-title {
+            font-size: 42px; font-weight: bold; color: #F90006;
+            line-height: 1.15; max-width: 560px;
+        }
+        .cover-subtitle {
+            font-size: 17px; color: #666; line-height: 1.5;
+            max-width: 480px; margin-top: 16px;
+        }
+        .cover-footer { font-size: 11px; color: #999; letter-spacing: 0.3px; }
+
+        /* Detail label */
+        .detail-label {
+            font-size: 10px; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            color: #F90006; margin-bottom: 6px;
+        }
+        .detail-list { list-style: none; padding: 0; font-size: 13px; }
+        .detail-list li { padding: 3px 0; color: #555; }
+        .detail-list li::before {
+            content: "\2022"; color: #F90006; font-weight: bold;
+            display: inline-block; width: 12px;
+        }
+
+        /* Case cards */
+        .case-card {
+            background: white; border-left: 4px solid #F90006;
+            border-radius: 0 8px 8px 0; padding: 20px 24px;
+            margin-bottom: 14px;
+        }
+        .case-card:last-child { margin-bottom: 0; }
+        .case-header {
+            display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;
+        }
+        .case-name { font-size: 15px; font-weight: bold; color: #333; }
+        .case-tag { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.3px; }
+        .case-stat { font-size: 34px; font-weight: bold; color: #F90006; line-height: 1; }
+        .case-stat-label {
+            font-size: 12px; color: #888; text-transform: uppercase;
+            letter-spacing: 0.3px; margin-top: 4px; margin-bottom: 8px;
+        }
+        .case-desc { font-size: 12.5px; color: #555; line-height: 1.5; }
+
+        /* Products */
+        .products-card {
+            background: white; border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px; padding: 14px 18px; margin-bottom: 10px;
+        }
+        .products-card-accent {
+            background: white; border-left: 4px solid #F90006;
+            border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 10px;
+        }
+        .products-card-header {
+            display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;
+        }
+        .products-card-name { font-size: 16px; font-weight: bold; color: #333; }
+        .products-card-desc { font-size: 12px; color: #555; margin-bottom: 10px; }
+        .stat-strip-compact {
+            display: flex; gap: 0; margin-bottom: 10px;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 5px; overflow: hidden;
+        }
+        .stat-strip-compact .stat-strip-item {
+            flex: 1; text-align: center; padding: 8px;
+            border-right: 1px solid rgba(0,0,0,0.06);
+        }
+        .stat-strip-compact .stat-strip-item:last-child { border-right: none; }
+        .stat-strip-compact .stat-strip-value { font-size: 14px; font-weight: bold; color: #F90006; }
+        .stat-strip-compact .stat-strip-label {
+            font-size: 9px; color: #888; text-transform: uppercase;
+            letter-spacing: 0.3px; margin-top: 1px;
+        }
+        .detail-grid-compact { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .detail-grid-compact .detail-label { font-size: 9px; margin-bottom: 4px; }
+        .detail-grid-compact .detail-list { font-size: 11px; }
+        .detail-grid-compact .detail-list li { padding: 1.5px 0; color: #555; }
+        .channels-micro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+        .channel-chip-micro {
+            background: rgba(249, 0, 6, 0.04);
+            border: 1px solid rgba(249, 0, 6, 0.12);
+            border-radius: 4px; padding: 5px 8px;
+        }
+        .channel-chip-micro-name { font-weight: bold; font-size: 10px; color: #333; }
+        .channel-chip-micro-desc { font-size: 9px; color: #888; margin-top: 1px; }
+        .products-engagement {
+            display: flex; gap: 20px; margin-top: 10px; padding-top: 8px;
+            border-top: 1px solid rgba(0,0,0,0.06); font-size: 11px;
+        }
+        .engagement-label { font-weight: bold; color: #333; }
+        .engagement-value { color: #555; margin-left: 6px; }
+        .deal-tiers-compact {
+            margin-top: 10px; padding: 8px 12px;
+            background: rgba(249, 0, 6, 0.04);
+            border-left: 3px solid #F90006;
+            border-radius: 0 5px 5px 0;
+            font-size: 11px; color: #555;
+        }
+
+        /* Healthcare client bench */
+        .client-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .client-card {
+            background: white;
+            border-left: 3px solid #F90006;
+            border-radius: 0 6px 6px 0;
+            padding: 12px 16px;
+        }
+        .client-name {
+            font-size: 14px; font-weight: bold; color: #333;
+            margin-bottom: 2px;
+        }
+        .client-sector {
+            font-size: 10px; color: #F90006;
+            text-transform: uppercase; letter-spacing: 0.3px;
+            font-weight: bold; margin-bottom: 6px;
+        }
+        .client-desc { font-size: 11.5px; color: #555; line-height: 1.45; }
+
+        /* Timeline */
+        .timeline {
+            display: flex; justify-content: space-between;
+            position: relative; margin: 32px 0 36px 0; padding: 0 8px;
+        }
+        .timeline::before {
+            content: ''; position: absolute; top: 18px;
+            left: 60px; right: 60px; height: 2px; background: #F90006;
+        }
+        .timeline-step {
+            text-align: center; width: 23%; position: relative; z-index: 1;
+        }
+        .timeline-dot {
+            width: 14px; height: 14px; background: #F90006;
+            border-radius: 50%; margin: 11px auto 10px auto;
+            border: 3px solid #FFF1E3; box-shadow: 0 0 0 2px #F90006;
+        }
+        .timeline-name { font-weight: bold; font-size: 13px; color: #333; }
+        .timeline-duration { font-size: 11px; color: #F90006; font-weight: bold; margin-top: 2px; }
+        .timeline-desc { font-size: 11px; color: #888; margin-top: 4px; line-height: 1.4; }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid; grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px; margin-top: 28px;
+        }
+        .pricing-card {
+            background: white; border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px; padding: 18px 20px; text-align: center;
+        }
+        .pricing-card-name { font-weight: bold; font-size: 14px; color: #333; margin-bottom: 4px; }
+        .pricing-card-structure { font-size: 12px; color: #F90006; font-weight: bold; margin-bottom: 8px; }
+        .pricing-card-desc { font-size: 11px; color: #888; line-height: 1.4; }
+
+        /* Differentiators */
+        .diff-block { padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .diff-block:last-child { border-bottom: none; }
+        .diff-num {
+            font-size: 36px; font-weight: bold;
+            color: rgba(249, 0, 6, 0.12); line-height: 1; margin-bottom: 2px;
+        }
+        .diff-title { font-size: 17px; font-weight: bold; color: #333; margin-bottom: 6px; }
+        .diff-desc { font-size: 13px; color: #555; max-width: 560px; line-height: 1.55; }
+
+        /* Next steps */
+        .next-step { display: flex; gap: 20px; margin-bottom: 28px; }
+        .next-step-num { font-size: 36px; font-weight: bold; color: #F90006; line-height: 1; min-width: 44px; }
+        .next-step-title { font-weight: bold; font-size: 15px; color: #333; margin-bottom: 4px; }
+        .next-step-desc { font-size: 13px; color: #555; line-height: 1.5; }
+        .contact-block {
+            margin-top: 40px; padding: 24px 28px;
+            background: white; border-radius: 8px; border: 1px solid rgba(0,0,0,0.08);
+        }
+        .contact-label {
+            font-size: 10px; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            color: #F90006; margin-bottom: 8px;
+        }
+        .contact-line { font-size: 14px; color: #555; padding: 2px 0; }
+        .page-footer {
+            position: absolute; bottom: 40px; left: 64px; right: 64px;
+            display: flex; justify-content: space-between; align-items: flex-end;
+        }
+        .page-footer img { max-width: 120px; opacity: 0.6; }
+        .page-footer-text { font-size: 10px; color: #bbb; }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: COVER -->
+    <div class="page">
+        <div class="cover">
+            <div>
+                <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol" class="cover-logo">
+            </div>
+            <div>
+                <div class="cover-title">Revenue Acceleration for the Elements Health Portfolio</div>
+                <div class="cover-subtitle">How Parasol partners with healthcare management teams to turn proven products into compounding, predictable revenue</div>
+            </div>
+            <div class="cover-footer">Prepared for Elements Health Investors &nbsp;&middot;&nbsp; April 2026 &nbsp;&middot;&nbsp; Confidential</div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: WHY THIS MATTERS / THESIS ALIGNMENT -->
+    <div class="page">
+        <div class="page-label">Why This Matters</div>
+        <h2 style="max-width: 560px;">Elements invests in healthcare companies with proven products. The gap from proven to market-leading is commercial execution.</h2>
+
+        <div class="body-text" style="margin-bottom: 18px;">
+            Elements backs small and mid-sized healthcare companies addressing high-priority needs &mdash; innovative care and reimbursement models, home-based care, payer/provider enablement, behavioral health, and underserved patient populations. In every one of those categories, clinical excellence does not automatically translate to commercial traction. Building the payer, provider, employer, and partnership motions required to scale revenue is a specific discipline, and it is what we do.
+        </div>
+        <div class="body-text" style="margin-bottom: 28px;">
+            Parasol is a healthcare-heavy revenue firm. More than half of our active client bench is in healthcare &mdash; spanning value-based care, home-based care, behavioral health, dementia care, and benefits navigation. We embed with portfolio company leadership, own the revenue motion, and deliver measurable growth with aligned incentives. No VP of Sales hire, no 12-month ramp.
+        </div>
+
+        <div class="detail-label" style="margin-bottom: 12px;">How Elements' Thesis Maps to Parasol's Healthcare Bench</div>
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <table style="margin: 0;">
+                <thead>
+                    <tr>
+                        <th style="width: 42%;">Elements Focus Area</th>
+                        <th style="width: 58%;">Parasol Proof Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color: #555; font-style: italic;">Innovative care &amp; reimbursement models</td>
+                        <td><strong>Duet</strong> &mdash; standing up the commercial motion for a new ACO launch</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #555; font-style: italic;">Home-based care</td>
+                        <td><strong>Tilly</strong> &mdash; zero-to-one B2B partnership motion for in-home services</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #555; font-style: italic;">Payer &amp; provider enablement</td>
+                        <td><strong>Nirvana</strong> &mdash; 3x revenue and $4.5M ARR closed in 12 months</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #555; font-style: italic;">Behavioral health</td>
+                        <td><strong>Berry Street</strong> &mdash; zero-to-one B2B partnership channel for behavioral nutrition care</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #555; font-style: italic;">Underserved patient populations</td>
+                        <td><strong>Craniometrix</strong>, <strong>Arlow</strong> &mdash; dementia care and specialty women's health go-to-market</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PAGE 3: HEALTHCARE CLIENT BENCH -->
+    <div class="page">
+        <div class="page-label">Healthcare Client Bench</div>
+        <h2>Who We Work With</h2>
+        <div class="subtitle" style="margin-bottom: 22px; font-size: 14px;">Healthcare companies Parasol is actively running the revenue motion for today</div>
+
+        <div class="client-grid">
+            <div class="client-card">
+                <div class="client-name">Duet</div>
+                <div class="client-sector">Value-Based Care &middot; ACO</div>
+                <div class="client-desc">Launching Duet's ACO: building the provider recruitment and partnership motion from scratch. Standing up the commercial engine that turns a clinical model into contracted lives.</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">Craniometrix</div>
+                <div class="client-sector">Dementia Care</div>
+                <div class="client-desc">Go-to-market execution for dementia care navigation &mdash; primary care partnerships, health system pilots, and payer conversations.</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">Arlow</div>
+                <div class="client-sector">Women's Health</div>
+                <div class="client-desc">Recent partner. Building the specialty women's health commercial motion &mdash; employer, provider, and direct channels.</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">Nirvana</div>
+                <div class="client-sector">Payer / Provider Enablement</div>
+                <div class="client-desc">Built and ran the full commercial motion for a Series A healthcare company with no existing sales team. 3x revenue and $4.5M ARR closed in 12 months.</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">Berry Street</div>
+                <div class="client-sector">Behavioral Nutrition</div>
+                <div class="client-desc">Zero to one on the B2B partnership channel &mdash; moving a consumer-led healthcare business into contracted partnerships.</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">Tilly</div>
+                <div class="client-sector">Home-Based Care</div>
+                <div class="client-desc">Zero to one on B2B partnerships for home-based care services &mdash; unlocking payer, employer, and referral channels.</div>
+            </div>
+            <div class="client-card" style="grid-column: 1 / -1;">
+                <div class="client-name">Atrix</div>
+                <div class="client-sector">B2B SaaS &middot; Enterprise Proof Point</div>
+                <div class="client-desc">Non-healthcare but relevant: Parasol closed seven-figure enterprise deals at Atrix. Validates that we bring large-enterprise closing muscle &mdash; the same motion that unlocks health system and national-payer contracts.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: OUR CAPABILITIES -->
+    <div class="page">
+        <div class="page-label">Our Capabilities</div>
+        <h2>Three Products. One Revenue Engine.</h2>
+
+        <div class="products-card-accent">
+            <div class="products-card-header">
+                <div class="products-card-name">Deal Closing</div>
+                <span class="tag">Primary Capability</span>
+            </div>
+            <div class="products-card-desc">We own your portfolio company's full sales cycle &mdash; from first call to closed revenue.</div>
+
+            <div class="stat-strip-compact">
+                <div class="stat-strip-item">
+                    <div class="stat-strip-value">Full-Cycle</div>
+                    <div class="stat-strip-label">Sales Execution</div>
+                </div>
+                <div class="stat-strip-item">
+                    <div class="stat-strip-value">6-Month</div>
+                    <div class="stat-strip-label">Minimum Engagement</div>
+                </div>
+                <div class="stat-strip-item">
+                    <div class="stat-strip-value">Retainer + Rev Share</div>
+                    <div class="stat-strip-label">Aligned Incentives</div>
+                </div>
+            </div>
+
+            <div class="detail-grid-compact">
+                <div>
+                    <div class="detail-label">What We Do</div>
+                    <ul class="detail-list">
+                        <li>Full sales cycle: calls, demos, proposals, negotiation, close</li>
+                        <li>Payer, provider, employer, and partnership motions</li>
+                        <li>Account expansion &mdash; map new departments, upsell/cross-sell</li>
+                        <li>Choreograph with clinical leadership &mdash; CMO/CMIO access as needed</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="detail-label">Best Fit When</div>
+                    <ul class="detail-list">
+                        <li>Clinical model proven; commercial motion is the bottleneck</li>
+                        <li>Pipeline exists but conversion is slow</li>
+                        <li>Management team ready to collaborate on revenue</li>
+                        <li>Urgency to show growth &mdash; board pressure, new investment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="deal-tiers-compact">
+                <strong style="color: #333;">Deal sizes:</strong> &nbsp;
+                <span style="font-weight: bold; color: #F90006;">SMB</span> (4-figure) &nbsp;&middot;&nbsp;
+                <span style="font-weight: bold; color: #F90006;">Mid-Market</span> (5&ndash;6 figure) &nbsp;&middot;&nbsp;
+                <span style="font-weight: bold; color: #F90006;">Enterprise</span> (7+ figure)
+            </div>
+        </div>
+
+        <div class="products-card">
+            <div class="products-card-header">
+                <div class="products-card-name">Demand Gen</div>
+                <span class="tag">Core Product</span>
+            </div>
+            <div class="products-card-desc">Full-funnel pipeline generation: partnerships, network activation, events, outreach, and thought leadership to fill and grow your pipeline.</div>
+
+            <div class="channels-micro">
+                <div class="channel-chip-micro">
+                    <div class="channel-chip-micro-name">Partnerships</div>
+                    <div class="channel-chip-micro-desc">Referral, co-sell, channel, alliances</div>
+                </div>
+                <div class="channel-chip-micro">
+                    <div class="channel-chip-micro-name">Warm Network</div>
+                    <div class="channel-chip-micro-desc">Map relationships to target accounts</div>
+                </div>
+                <div class="channel-chip-micro">
+                    <div class="channel-chip-micro-name">Events</div>
+                    <div class="channel-chip-micro-desc">Roundtables, conferences, dinners</div>
+                </div>
+                <div class="channel-chip-micro">
+                    <div class="channel-chip-micro-name">Outreach</div>
+                    <div class="channel-chip-micro-desc">Calling, email, text, in-person</div>
+                </div>
+                <div class="channel-chip-micro">
+                    <div class="channel-chip-micro-name">Thought Leadership</div>
+                    <div class="channel-chip-micro-desc">CEO positioning + ghostwriting</div>
+                </div>
+                <div class="channel-chip-micro">
+                    <div class="channel-chip-micro-name">Story &amp; Database</div>
+                    <div class="channel-chip-micro-desc">Build narrative, build target list</div>
+                </div>
+            </div>
+
+            <div class="products-engagement">
+                <div>
+                    <span class="engagement-label">Pilot:</span>
+                    <span class="engagement-value">2-week or 30-day diagnostic</span>
+                </div>
+                <div>
+                    <span class="engagement-label">Pricing:</span>
+                    <span class="engagement-value">Retainer + performance bonus</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="products-card">
+            <div class="products-card-header">
+                <div class="products-card-name">Rev Ops / Architecture</div>
+                <span class="tag">Core Product</span>
+            </div>
+            <div class="products-card-desc">Revenue engine visibility and architecture &mdash; starting with a free diagnostic that feeds into a build engagement.</div>
+
+            <div class="detail-grid-compact">
+                <div>
+                    <div class="detail-label">Free Diagnostic</div>
+                    <ul class="detail-list">
+                        <li>Ingest software spend and current tech stack</li>
+                        <li>Review pipeline data and workflow</li>
+                        <li>Identify low-hanging fruit from cross-client patterns</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="detail-label">Paid Engagement</div>
+                    <ul class="detail-list">
+                        <li>Build and architect the rev ops stack</li>
+                        <li>Design reporting frameworks and tool connections</li>
+                        <li>Unified visibility into what's working</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="products-engagement">
+                <div>
+                    <span class="engagement-label">Entry Point:</span>
+                    <span class="engagement-value">Free diagnostic &mdash; no commitment</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: CASE STUDIES -->
+    <div class="page">
+        <div class="page-label">Client Results</div>
+        <h2>Proven Revenue Impact in Healthcare</h2>
+
+        <div class="case-card">
+            <div class="case-header">
+                <div class="case-name">Duet</div>
+                <div class="case-tag">Current &middot; Value-Based Care / ACO</div>
+            </div>
+            <div class="case-stat">ACO Launch</div>
+            <div class="case-stat-label">Standing Up the Commercial Motion From Zero</div>
+            <div class="case-desc">Parasol is building Duet's go-to-market for its ACO launch &mdash; provider recruitment, partnership architecture, and the payer-facing narrative. Turning a clinical model into a contracted revenue engine.</div>
+        </div>
+
+        <div class="case-card">
+            <div class="case-header">
+                <div class="case-name">Nirvana</div>
+                <div class="case-tag">Series A &middot; Payer / Provider Enablement</div>
+            </div>
+            <div class="case-stat">3x / $4.5M ARR</div>
+            <div class="case-stat-label">Revenue Tripled &middot; $4.5M ARR Closed in 12 Months</div>
+            <div class="case-desc">Full-cycle deal execution from pipeline through close. Built and ran the commercial motion for a Series A healthcare company with no existing sales team &mdash; tripling revenue and closing $4.5M in ARR in the first year.</div>
+        </div>
+
+        <div class="case-card">
+            <div class="case-header">
+                <div class="case-name">Berry Street &amp; Tilly</div>
+                <div class="case-tag">Behavioral Nutrition &middot; Home-Based Care</div>
+            </div>
+            <div class="case-stat">0 &rarr; 1</div>
+            <div class="case-stat-label">B2B Partnership Channels Built From Scratch</div>
+            <div class="case-desc">Two healthcare businesses with strong consumer and clinical motions, no existing B2B revenue channel. Parasol built the partnership playbook, landed the first contracts, and proved the motion was scalable.</div>
+        </div>
+
+        <div class="case-card">
+            <div class="case-header">
+                <div class="case-name">Atrix</div>
+                <div class="case-tag">Enterprise Proof Point &middot; B2B SaaS</div>
+            </div>
+            <div class="case-stat">7-Figure</div>
+            <div class="case-stat-label">Enterprise Deals Closed</div>
+            <div class="case-desc">Non-healthcare but directly relevant: Parasol closed seven-figure enterprise deals at Atrix. The same closing muscle unlocks health system, national-payer, and large-employer contracts across the healthcare portfolio.</div>
+        </div>
+    </div>
+
+    <!-- PAGE 6: ENGAGEMENT MODEL -->
+    <div class="page">
+        <div class="page-label">Engagement Model</div>
+        <h2>How We Work With Portfolio Companies</h2>
+
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="timeline-name">Discovery</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-duration">2 Weeks</div>
+                <div class="timeline-desc">Map the portco revenue motion &mdash; pipeline, team, tools, targets</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-name">Diagnostic</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-duration">2&ndash;4 Weeks</div>
+                <div class="timeline-desc">Identify the highest-leverage intervention across Deal Closing, Demand Gen, or Rev Ops</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-name">Pilot / Retainer</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-duration">6+ Months</div>
+                <div class="timeline-desc">Execute with skin in the game &mdash; retainer + performance alignment</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-name">Compound</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-duration">Ongoing</div>
+                <div class="timeline-desc">Expand services as revenue grows &mdash; the engagement scales with results</div>
+            </div>
+        </div>
+
+        <div class="detail-label" style="margin-bottom: 14px;">Pricing Models</div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-card-name">Deal Closing</div>
+                <div class="pricing-card-structure">Retainer + Rev Share</div>
+                <div class="pricing-card-desc">Revenue share on closed deals. We only win when the portco wins. Best for companies with existing pipeline needing conversion.</div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-card-name">Demand Gen</div>
+                <div class="pricing-card-structure">Retainer + Performance</div>
+                <div class="pricing-card-desc">Performance bonus tied to meetings and pipeline generated. Pilot available: 2-week or 30-day diagnostic before full retainer.</div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-card-name">Rev Ops</div>
+                <div class="pricing-card-structure">Free Diagnostic &rarr; Project</div>
+                <div class="pricing-card-desc">No-commitment entry point. Free diagnostic of tech stack and pipeline, then scoped engagement to build infrastructure.</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 28px; padding: 16px 20px; background: rgba(249, 0, 6, 0.04); border-radius: 8px; text-align: center;">
+            <div style="font-size: 14px; color: #333; font-weight: bold;">Every engagement is built on compounding.</div>
+            <div style="font-size: 13px; color: #666; margin-top: 4px;">As portfolio company revenue grows, the services expand. One portco often leads to the next.</div>
+        </div>
+    </div>
+
+    <!-- PAGE 7: WHY HEALTHCARE PE CHOOSES PARASOL -->
+    <div class="page">
+        <div class="page-label">The Parasol Advantage</div>
+        <h2>Why Healthcare Investors Choose Parasol</h2>
+
+        <div class="diff-block">
+            <div class="diff-num">01</div>
+            <div class="diff-title">Healthcare Depth, Not a Generalist Borrowing the Vocabulary</div>
+            <div class="diff-desc">More than half of our active bench is healthcare. We have already built the motion for ACOs, payer enablement, home-based care, behavioral health, dementia care, and women's health. Your portfolio company does not pay to educate us on value-based care, ASO contracting, or provider network economics &mdash; we come in already fluent.</div>
+        </div>
+
+        <div class="diff-block">
+            <div class="diff-num">02</div>
+            <div class="diff-title">Speed Without Headcount Risk</div>
+            <div class="diff-desc">A VP of Sales hire takes 6 months to find, 6 months to ramp, and carries a full comp package with no guarantee of results. Parasol deploys in weeks, executes immediately, and scales up or down based on performance. No severance, no ramp, no organizational risk &mdash; especially valuable for small and mid-sized portcos where a wrong hire is a material setback.</div>
+        </div>
+
+        <div class="diff-block">
+            <div class="diff-num">03</div>
+            <div class="diff-title">Aligned Incentives</div>
+            <div class="diff-desc">Retainer plus revenue share means Parasol only wins when the portfolio company wins. This is not a consulting engagement that bills hours regardless of outcome. The pricing model is built for the value creation mindset &mdash; we are paid to close revenue, not to advise on closing revenue.</div>
+        </div>
+
+        <div class="diff-block">
+            <div class="diff-num">04</div>
+            <div class="diff-title">Cross-Portfolio Pattern Recognition</div>
+            <div class="diff-desc">Parasol works across healthcare subsectors simultaneously. A partnership playbook that works at Berry Street informs what we do at Tilly. A payer motion that works at Nirvana accelerates what we do at Duet. That compounding effect &mdash; across companies, not just within them &mdash; is the real asset for a healthcare investor with multiple portcos facing similar commercial questions.</div>
+        </div>
+    </div>
+
+    <!-- PAGE 8: NEXT STEPS -->
+    <div class="page">
+        <div class="page-label">Getting Started</div>
+        <h2>Next Steps</h2>
+
+        <div style="margin-top: 32px;">
+            <div class="next-step">
+                <div class="next-step-num">1</div>
+                <div>
+                    <div class="next-step-title">Introductory Call with Jonathan &amp; the Elements Team</div>
+                    <div class="next-step-desc">30 minutes. Walk through Parasol's healthcare bench in more detail, understand Elements' near-term portfolio priorities, and identify one or two companies where the commercial fit is obvious.</div>
+                </div>
+            </div>
+
+            <div class="next-step">
+                <div class="next-step-num">2</div>
+                <div>
+                    <div class="next-step-title">Free Diagnostic on One Portco</div>
+                    <div class="next-step-desc">Parasol runs a no-commitment diagnostic on one company: pipeline review, tech stack audit, revenue motion assessment. You get actionable insight regardless of whether we engage further.</div>
+                </div>
+            </div>
+
+            <div class="next-step">
+                <div class="next-step-num">3</div>
+                <div>
+                    <div class="next-step-title">Pilot Engagement</div>
+                    <div class="next-step-desc">If the fit is confirmed, launch a 6-month Deal Closing or Demand Gen engagement with full transparency on metrics, regular reporting, and retainer + performance alignment.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-block">
+            <div class="contact-label">Contact</div>
+            <div class="contact-line"><strong>Joe Carbonaro</strong></div>
+            <div class="contact-line">joe@withparasol.co</div>
+            <div class="contact-line" style="margin-top: 10px; font-size: 12px; color: #888;">Prepared for Jonathan Lane &middot; Elements Health Investors</div>
+        </div>
+
+        <div class="page-footer">
+            <img src="https://images.squarespace-cdn.com/content/v1/6684045ac016b60bf3df5cfe/1585dbb8-82f5-4563-bd4d-4e22add5bd37/Parasol-Logo-Horizontal-Color.png?format=500w" alt="Parasol">
+            <div class="page-footer-text">Confidential &mdash; Prepared for Elements Health Investors</div>
+        </div>
+    </div>
+
+</body>
+</html>
